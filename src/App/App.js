@@ -17,6 +17,16 @@ class App extends Component {
         folders: []
     };
 
+    addNote = addNote => {
+        this.setState({
+            notes: this.state.notes.concat(addNote)
+        })
+    };
+    addFolder = addFolder => {
+        this.setState({
+            folders: this.state.folders.concat(addFolder)
+        })
+    }
     componentDidMount() {
         Promise.all([
             fetch(`${config.API_ENDPOINT}/notes`),
@@ -56,8 +66,7 @@ class App extends Component {
                     />
                 ))}
                 <Route path="/note/:noteId" component={NotePageNav} />
-                <Route path="/add-folder" component={AddFolder} />
-                <Route path="/add-note" component={AddNote} />
+                
             </>
         );
     }
@@ -74,6 +83,8 @@ class App extends Component {
                     />
                 ))}
                 <Route path="/note/:noteId" component={NotePageMain} />
+                <Route path="/add-folder" component={AddFolder} />
+                <Route path="/add-note" component={AddNote} />
             </>
         );
     }
